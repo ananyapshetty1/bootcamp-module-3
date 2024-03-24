@@ -76,7 +76,7 @@ class CarCatalog {
      */
     func filterCarsBy(brand: CarBrand) {
         var newArr:[CarModel] = []
-        if brand.rawValue != "none" {
+        if brand != .none {
             for aCar in displayedCars{
                 if aCar.aBrand == brand {
                     newArr.append(aCar)

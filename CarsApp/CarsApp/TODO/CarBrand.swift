@@ -17,6 +17,7 @@ import Foundation
             (3) Test your implementation with very basic test cases.
  */
 enum CarBrand: String, CaseIterable {
+    case none = "none"
     case Mercedes = "Mercedes"
     case BMW = "BMW"
     case Toyota = "Toyota"
@@ -25,6 +26,8 @@ enum CarBrand: String, CaseIterable {
     case Ford = "Ford"
     var yearFounded:String {
         switch self {
+        case .none:
+            return "N/A"
         case .Mercedes:
             return "1926"
         case .BMW:
@@ -41,6 +44,8 @@ enum CarBrand: String, CaseIterable {
     }
     var fact:String {
         switch self {
+        case .none:
+            return "N/A"
         case .Mercedes:
             return "Mercedes Benz invented the first gasoline-powered automobile."
         case .BMW:
