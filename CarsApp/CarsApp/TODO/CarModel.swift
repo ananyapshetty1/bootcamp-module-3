@@ -25,7 +25,7 @@ import Foundation
  TODO: Written question
     Why did we decide to use a Struct instead of a Class to represent a car model?
  
-    (type here)
+    Classes are passed by reference and for that reason, we chose to use a Struct instead of a Class to represent a car model.
  */
 
 
@@ -34,20 +34,33 @@ struct CarModel: Identifiable, Hashable {
     let id: String // DO NOT EDIT THIS. This is the model id, and is used by the UI.
     
     // TODO: complete the struct's implementation
+    var aBrand: CarBrand
+    var modelName: String
+    var speed: Int
+    var color: String
+    var capacity: Int
     
+    init(id: String, aBrand: CarBrand, modelName: String, speed: Int, color: String, capacity: Int) {
+        self.id = id
+        self.aBrand = aBrand
+        self.modelName = modelName
+        self.speed = speed
+        self.color = color
+        self.capacity = capacity
+    }
     
     // TODO: These are functions used by the UI to display the model's data, right now they return default values. Fix it such that it returns the correct value.
     
     func getBrandYear() -> String {
-        return "1920"
+        return aBrand.yearFounded
     }
     
     func getBrandFact() -> String {
-        return "Mercedes Benz invented the first gasoline-powered automobile."
+        return aBrand.fact
     }
     
     func getBrandName() -> String {
-        return "Mercedes"
+        return aBrand.rawValue
     }
     
     func getModelID() -> String {
@@ -55,19 +68,19 @@ struct CarModel: Identifiable, Hashable {
     }
     
     func getModelName() -> String {
-        return "G-Wagon"
+        return modelName
     }
     
     func getTopSpeed() -> Int {
-        return 120
+        return speed
     }
     
     func getColor() -> String {
-        return "Red"
+        return color
     }
     
     func getFuel() -> Int {
-        return 100
+        return capacity
     }
     
 }

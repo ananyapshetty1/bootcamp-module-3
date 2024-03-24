@@ -25,7 +25,14 @@ class CarCatalog {
      NOTE: The ids of the cars you provide must be unique, otherwise the app will crash.
     */
     init() {
-
+        var carModelA: CarModel = CarModel(id: "1000", aBrand: .Lamborghini, modelName: "A", speed: 80, color: "Black", capacity: 250)
+        var carModelB: CarModel = CarModel(id: "2000", aBrand: .Mercedes, modelName: "B", speed: 65, color: "Silver", capacity: 400)
+        var carModelC: CarModel = CarModel(id: "3000", aBrand: .Porsche, modelName: "C", speed: 60, color: "White", capacity: 300)
+        var carModelD: CarModel = CarModel(id: "4000", aBrand: .BMW, modelName: "D", speed: 70, color: "Blue", capacity: 350)
+        var carModelE: CarModel = CarModel(id: "5000", aBrand: .Ford, modelName: "E", speed: 50, color: "Brown", capacity: 250)
+        self.carsAvailable = [carModelA:1, carModelB:1, carModelC:1, carModelD:1, carModelE:1]
+        self.displayedCars = Array(carsAvailable.keys)
+        self.favourites = []
     }
     
     
@@ -34,7 +41,19 @@ class CarCatalog {
         This function gets called by the UI whenever the user wants to ADD/REMOVE this car from their favourites list. Change the state of the favourites array to accomplish this.
      */
     func toggleFavourite(car: CarModel) {
-        
+        if favourites.contains(car) {
+            var num:Int = 0
+            var index:Int = 0
+            while num<displayedCars.count {
+                if displayedCars[num] == car {
+                    index = num
+                }
+                num+=1
+            }
+            favourites.remove(at: index)
+        } else {
+            favourites.append(car)
+        }
  
     }
     
@@ -43,8 +62,11 @@ class CarCatalog {
         This function gets called by the UI whenever the user wants to view the amount of cars available from a certain model.
      */
     func getCarAvailability(car: CarModel) -> Int {
-        
-
+        if let numOfCars = carsAvailable[car] {
+            return numOfCars
+        } else {
+            return 0
+        }
     }
     
     /*
@@ -53,9 +75,14 @@ class CarCatalog {
         NOTE: make sure you handle the case where it's 'none', as it implies that we don't want a filter.
      */
     func filterCarsBy(brand: CarBrand) {
-
+        var newArr:[CarModel] = []
+        if brand.rawValue != "none" {
+            for aCar in displayedCars{
+                if aCar.aBrand == brand {
+                    newArr.append(aCar)
+                }
+            }
+            displayedCars = newArr
+        }
     }
-    
-    
-    
 }
